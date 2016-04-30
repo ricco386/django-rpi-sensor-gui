@@ -1,13 +1,10 @@
 from django.shortcuts import render
-from gui.models import Measurement
+from gui.models import Node
 
 
 def reading(request):
-    temp = Measurement.objects.filter(unit='1').last()
-    hum = Measurement.objects.filter(unit='2').last()
-
+    nodes = Node.objects.all()
     context = {
-        'temp': temp.value,
-        'hum': hum.value
+        'nodes': nodes
     }
-    return render(request, 'node/reading.html', context)
+    return render(request, 'gui/reading.html', context)

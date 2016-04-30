@@ -1,11 +1,36 @@
-{% extends "node/base.html" %}
+{% extends "gui/base.html" %}
 
 {% block content %}
-<h1>Last Sensor Reading</h1>
-<p>
-{{ hum }}
-</p>
-<p>
-{{ temp }}
-</p>
+<div class="block-area">
+  <div class="row">
+    {% for node in nodes %}
+    <div class="col-md-4">
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2>{{ node.name }}</h2>
+          <h3 class="block-title">{{ node.location }}</h3> {{ node.ip }}
+        </div>
+
+        {% for unit, value in node.get_last_measurement.items %}
+          <div class="col-md-6">
+            <!-- Pies -->
+            <div class="tile text-center">
+              <div class="tile-dark p-10">
+                <div class="pie-chart-tiny" data-percent="{{ value }}">
+                  <span class="pie-value {{ unit }}">{{ value }}</span>
+                  <span class="pie-title"><strong>{{ unit }}</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
 {% endblock %}

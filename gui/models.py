@@ -36,6 +36,16 @@ class Node(models.Model):
     ip = models.GenericIPAddressField('IP')
     sensors = models.ManyToManyField(Sensor)
 
+    def get_last_measurement(self):
+        data = {}
+
+        for sensor in self.sensors.all():
+            for unit in sensor.units.all():
+                measurement = Measurement.objects.filter(unit=unit.id, sensor=sensor.id).last()
+                data[unit.name] = measurement.value
+
+        return data
+
     class Meta:
         unique_together = ('name', 'token')
 
