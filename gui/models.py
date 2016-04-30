@@ -7,6 +7,7 @@ class Unit(models.Model):
     Unit types that are available in sensor
     """
     name = models.CharField('Name', max_length=64)
+    variable = models.CharField('Variable', max_length=4)
 
     def __str__(self):
         return self.name
@@ -17,7 +18,7 @@ class Sensor(models.Model):
     Sensors that can send data
     """
     name = models.CharField('Name', max_length=64)
-    desc = models.CharField('Description', max_length=256)
+    desc = models.CharField('Description', max_length=256, blank=True)
     units = models.ManyToManyField(Unit)
 
     def __str__(self):
@@ -29,8 +30,10 @@ class Node(models.Model):
     Nodes registered to communicate with app
     """
     name = models.CharField('Name', max_length=64)
-    token = models.CharField(max_length=40)
-    desc = models.CharField('Description', max_length=256)
+    token = models.CharField(max_length=40, blank=True)
+    desc = models.CharField('Description', max_length=256, blank=True)
+    location = models.CharField('Location', max_length=256, blank=True)
+    ip = models.GenericIPAddressField('IP')
     sensors = models.ManyToManyField(Sensor)
 
     class Meta:
