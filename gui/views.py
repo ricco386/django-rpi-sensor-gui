@@ -2,9 +2,9 @@ from django.shortcuts import render
 from gui.models import Node
 
 
-def reading(request):
+def dashboard(request):
     nodes = Node.objects.all()
     context = {
         'nodes': nodes
     }
-    return render(request, 'gui/reading.html', context)
+    return render(request, 'gui/dashboard.html', context)
