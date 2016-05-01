@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="format-detection" content="telephone=no">
+        <meta charset="UTF-8">
+
+        <meta name="description" content="Server error at requested page.">
+        <meta name="keywords" content="Error, 500, Server error">
+
+        <title>ERROR 404</title>
+            
+        <!-- CSS -->
+        <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+        <link href="{% static "css/style.css" %}" rel="stylesheet">
+        <link href="{% static "css/generics.css" %}" rel="stylesheet">
+    </head>
+    <body id="skin-blur-violate">
+        <section id="error-page" class="tile">
+            <h1 class="m-b-10">SERVER ERROR 500</h1>
+            <p>Sorry, but the seems to be an error at page you have requested. Don't worry though, we have notified admin.</p>
+            <a class="underline" href="">Go to Home page</a>
+        </section>
+        
+    </body>
+</html>
