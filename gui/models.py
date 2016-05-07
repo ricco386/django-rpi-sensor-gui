@@ -42,7 +42,10 @@ class Node(models.Model):
         for sensor in self.sensors.all():
             for unit in sensor.units.all():
                 measurement = Measurement.objects.filter(unit=unit.id, sensor=sensor.id).last()
-                data[unit.name] = measurement.value
+                data[unit.name] = {
+                    'value': measurement.value,
+                    'date': measurement.date,
+                }
 
         return data
 

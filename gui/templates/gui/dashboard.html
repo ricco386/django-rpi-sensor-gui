@@ -9,19 +9,23 @@
       <div class="row">
         <div class="col-md-12">
           <h2>{{ node.location }}</h2>
-          <h3 class="block-title">{{ node.name }}</h3> {{ node.ip }}
+          <h3 class="block-title"><a href="{% url 'node' node.name %}">{{ node.name }}</a></h3> {{ node.ip }}
         </div>
 
-        {% for unit, value in node.get_last_measurement.items %}
+        {% for unit, data in node.get_last_measurement.items %}
           <div class="col-md-6">
             <!-- Pies -->
             <div class="tile text-center">
               <div class="tile-dark p-10">
-                <div class="pie-chart-tiny" data-percent="{{ value }}">
-                  <span class="pie-value {{ unit }}">{{ value }}</span>
-                  <span class="pie-title"><strong>{{ unit }}</strong></span>
+                <div class="pie-chart-tiny" data-percent="{{ data.value }}">
+                  <span class="pie-value {{ unit }}">{{ data.value }}</span>
+                  <span class="pie-title">
+                    <strong>{{ unit }}</strong><br />
+                  </span>
                 </div>
               </div>
+
+              <small>{{ data.date }}</small>
             </div>
           </div>
         {% endfor %}
