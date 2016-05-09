@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from datetime import datetime, timedelta
 
 
 class Unit(models.Model):
@@ -71,3 +72,8 @@ class Measurement(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.node, self.sensor)
+
+    @classmethod
+    def last_day(cls, sensor, unit):
+        return cls.objects.filter(unit=unit.id, sensor=sensor.id).filter(date__gte=(datetime.now() - timedelta(hours=24)))
+

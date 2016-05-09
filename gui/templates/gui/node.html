@@ -10,8 +10,7 @@
   </div>
 
   <div class="row">
-    {% for sensor in node.sensors.all %}
-      {% for unit in sensor.units.all %}
+      {% for unit in data %}
         <div class="col-md-6">
           <div class="tile">
             <h2 class="tile-title">{{ unit.name }}</h2>
@@ -25,11 +24,10 @@
             </div>
             -->
             <div class="p-10">
-              <div id="line-chart" class="main-chart" style="height: 250px"></div>
+              <div id="{{ unit.name }}" class="main-chart" style="height: 250px"></div>
             </div>
           </div>
         </div>
-      {% endfor %}
     {% endfor %}
   </div>
 
@@ -38,4 +36,17 @@
 {% endblock %}
 
 {% block javascript %}
+<script type="text/javascript">
+$(function() {
+  {% for unit in data %}
+  $.plot("#{{ unit.name }}", [
+      {{ unit.measurements }}
+    ], {
+    xaxis: {
+      mode: "time"
+    }
+  });
+  {% endfor %}
+});
+</script>
 {% endblock %}
