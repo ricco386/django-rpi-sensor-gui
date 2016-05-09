@@ -1,5 +1,12 @@
 {% extends "gui/base.html" %}
 
+{% block breadcrumb %}
+<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+<li class="active">Node</li>
+{% endblock %}
+
+{% block page-title %}NODE: {{ node.name }}{% endblock %}
+
 {% block content %}
 <div class="block-area">
   <div class="row">
