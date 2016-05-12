@@ -22,5 +22,6 @@ admin.site.register(Node, NodeAdmin)
 
 class MeasurementAdmin(admin.ModelAdmin):
     list_display = ('node', 'sensor', 'value', 'unit', 'date')
+    list_filter = ('node', 'sensor', 'unit', 'date  ')
 
 admin.site.register(Measurement, MeasurementAdmin)
