@@ -19,7 +19,7 @@ def node(request, name):
         for unit in sensor.units.all():
 
             measurement = []
-            for value in Measurement.last_day(sensor, unit):
+            for value in Measurement.last_day(node, sensor, unit):
 
                 timestamp = time.mktime(value.date.timetuple())
                 measurement.append([int(timestamp*1000), float(value.value)])

@@ -42,7 +42,7 @@ class Node(models.Model):
 
         for sensor in self.sensors.all():
             for unit in sensor.units.all():
-                measurement = Measurement.objects.filter(unit=unit.id, sensor=sensor.id).last()
+                measurement = Measurement.objects.filter(unit=unit.id, sensor=sensor.id, node=self.id).last()
                 data[unit.name] = {
                     'value': measurement.value,
                     'date': measurement.date,
@@ -74,6 +74,7 @@ class Measurement(models.Model):
         return "%s %s" % (self.node, self.sensor)
 
     @classmethod
-    def last_day(cls, sensor, unit):
-        return cls.objects.filter(unit=unit.id, sensor=sensor.id).filter(date__gte=(datetime.now() - timedelta(hours=24)))
+    def last_day(cls, node, sensor, unit):
+        return cls.objects.filter(unit=unit.id, sensor=sensor.id, node=node.id).filter(
+            date__gte=(datetime.now() - timedelta(hours=24)))
 
