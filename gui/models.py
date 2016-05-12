@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.utils import timezone
 from datetime import datetime, timedelta
 
 
@@ -76,5 +77,5 @@ class Measurement(models.Model):
     @classmethod
     def last_day(cls, node, sensor, unit):
         return cls.objects.filter(unit=unit.id, sensor=sensor.id, node=node.id).filter(
-            date__gte=(datetime.now() - timedelta(hours=24)))
+            date__gte=(timezone.now() - timedelta(hours=24)))
 

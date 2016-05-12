@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 from gui.models import Node, Measurement
 import time
 
@@ -20,8 +21,7 @@ def node(request, name):
 
             measurement = []
             for value in Measurement.last_day(node, sensor, unit):
-
-                timestamp = time.mktime(value.date.timetuple())
+                timestamp = time.mktime(timezone.localtime(value.date).timetuple())
                 measurement.append([int(timestamp*1000), float(value.value)])
 
             data.append({
