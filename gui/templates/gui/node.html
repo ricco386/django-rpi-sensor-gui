@@ -45,15 +45,46 @@
 {% block javascript %}
 <script type="text/javascript">
 $(function() {
-  {% for unit in data %}
-  $.plot("#{{ unit.name }}", [
-      {{ unit.measurements }}
-    ], {
-    xaxis: {
-      mode: "time"
-    }
-  });
-  {% endfor %}
+    {% for unit in data %}
+    $.plot("#{{ unit.name }}", [{
+      data: {{ unit.measurements }},
+{#      label: "{{ unit.variable }}", #}
+    },],
+    {
+        series: {
+            lines: {
+                show: true,
+                lineWidth: 1,
+            },
+            color: 'rgba(255,255,255,0.7)',
+            shadowSize: 0,
+        },
+        xaxis: {
+            tickColor: 'rgba(255,255,255,0)',
+            font :{
+                lineHeight: 13,
+                style: "normal",
+                color: "rgba(255,255,255,0.8)",
+            },
+            mode: "time"
+        },
+        yaxis: {
+            tickColor: 'rgba(255,255,255,0.15)',
+            tickDecimals: 1,
+            font :{
+                lineHeight: 13,
+                style: "normal",
+                color: "rgba(255,255,255,0.8)",
+            },
+            shadowSize: 0,
+        },
+        grid: {
+            borderWidth: 1,
+            borderColor: 'rgba(255,255,255,0.25)',
+            labelMargin: 10,
+        },
+    });
+    {% endfor %}
 });
 </script>
 {% endblock %}
