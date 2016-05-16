@@ -49,6 +49,7 @@ $(function() {
     $.plot("#{{ unit.name }}", [{
       data: {{ unit.measurements }},
 {#      label: "{{ unit.variable }}", #}
+{% if unit.name == 'movement' %}lines: { show: true, steps: true }{% endif %}
     },],
     {
         series: {
