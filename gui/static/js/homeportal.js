@@ -1,5 +1,5 @@
-<script type="text/javascript">
 var idleTime = 0;
+
 $(document).ready(function () {
     //Increment the idle time counter every minute.
     var idleInterval = setInterval(timerIncrement, 1000); // 1 second
@@ -19,4 +19,3 @@ function timerIncrement() {
         window.location.reload();
     }
 }
-</script>
