@@ -1,11 +1,15 @@
 {% extends "gui/base.html" %}
 
 {% block breadcrumb %}
-<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-<li class="active">Node</li>
+<div class="pull-left breadcrumb">
+  <a href="{% url 'dashboard' %}">
+    <span>Dashboard</span>
+  </a> >
+  <span class="active">Node: {{ node.name }}</span>
+</div>
 {% endblock %}
 
-{% block page-title %}NODE: {{ node.name }}{% endblock %}
+{% block page-title %}<h1 class="pull-right">{{ node.location }}</h1>{% endblock %}
 
 {% block content %}
 <div class="block-area">
@@ -17,24 +21,24 @@
   </div>
 
   <div class="row">
-      {% for unit in data %}
-        <div class="col-md-6">
-          <div class="tile">
-            <h2 class="tile-title">{{ unit.name }}</h2>
-            <!--
-            <div class="tile-config dropdown">
-            <a data-toggle="dropdown" href="" class="tooltips tile-menu" title="Options"></a>
-            <ul class="dropdown-menu pull-right text-right">
-              <li><a href="">Refresh</a></li>
-              <li><a href="">Settings</a></li>
-            </ul>
-            </div>
-            -->
-            <div class="p-10">
-              <div id="{{ unit.name }}" class="main-chart" style="height: 250px"></div>
-            </div>
+    {% for unit in data %}
+      <div class="col-xs-6">
+        <div class="tile">
+          <h2 class="tile-title">{{ unit.name }}</h2>
+          <!--
+          <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tooltips tile-menu" title="Options"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+          </div>
+          -->
+          <div class="p-10">
+            <div id="{{ unit.name }}" class="main-chart" style="height: 250px"></div>
           </div>
         </div>
+      </div>
     {% endfor %}
   </div>
 

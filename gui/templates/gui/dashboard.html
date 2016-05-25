@@ -2,16 +2,18 @@
 {% load tz %}
 
 {% block breadcrumb %}
-<li class="active">Dashboard</li>
+<div class="pull-left breadcrumb">
+  <span class="active">Dashboard</span>
+</div>
 {% endblock %}
 
-{% block page-title %}DASHBOARD{% endblock %}
+{% block page-title %}<h1 class="pull-right">DASHBOARD</h1>{% endblock %}
 
 {% block content %}
 <div class="block-area">
   <div class="row">
     {% for node in nodes %}
-    <div class="col-md-4">
+    <div class="col-xs-4 col-md-4">
 
       <div class="row">
         <div class="col-md-12">
